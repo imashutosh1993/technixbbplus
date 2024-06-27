@@ -1,24 +1,29 @@
 package com.technix.bbplus.entity;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.EnableMBeanExport;
 
 import java.sql.Timestamp;
 import java.util.Date;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
 @Table(name = "tblcompanies")
 public class Company {
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Id
-    private int id;
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    private int companyId;
+
     private String companyName;
+
     private String businessType;
+
     private String cinNumber;
     private Date registrationDate;
     private String address;
@@ -41,6 +46,6 @@ public class Company {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customerId",referencedColumnName = "customerId",insertable = false,nullable = false,updatable = false)
+    @JoinColumn(name = "customerId", referencedColumnName = "customerId", insertable = false, nullable = false, updatable = false)
     private Customer customer;
 }

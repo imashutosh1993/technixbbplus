@@ -26,6 +26,6 @@ public class Supplier {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "companyId",referencedColumnName = "Id",insertable = false,nullable = false,updatable = false)
+    @JoinColumn(name = "companyId",referencedColumnName = "companyId",insertable = false,nullable = false,updatable = false)
     private Company company;
 }

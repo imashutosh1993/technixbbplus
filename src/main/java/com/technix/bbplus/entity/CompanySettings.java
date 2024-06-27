@@ -30,7 +30,7 @@ public class CompanySettings {
     private int companyId;
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "companyId",referencedColumnName = "id",insertable = false,updatable = false,nullable = false)
+    @JoinColumn(name = "companyId",referencedColumnName = "companyId",insertable = false,updatable = false,nullable = false)
     private Company company;
 
 }

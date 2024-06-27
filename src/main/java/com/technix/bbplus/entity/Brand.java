@@ -29,6 +29,6 @@ public class Brand {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "companyId",referencedColumnName = "Id",insertable = false,updatable = false,nullable = false)
+    @JoinColumn(name = "companyId",referencedColumnName = "companyId",insertable = false,updatable = false,nullable = false)
     private Company company;
 }

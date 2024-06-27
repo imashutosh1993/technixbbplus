@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Data
 @Entity
-@Table()
+
 public class Category {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,7 @@ public class Category {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "companyId",referencedColumnName = "Id",insertable = false,nullable = false,updatable = false)
+    @JoinColumn(name = "companyId",referencedColumnName = "companyId",insertable = false,nullable = false,updatable = false)
     private Company company;
+
 }

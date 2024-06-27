@@ -35,7 +35,7 @@ public class PartnersDirectors {
     private int companyId;
 @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "companyId",referencedColumnName = "id",insertable = false,updatable = false,nullable = false)
+    @JoinColumn(name = "companyId",referencedColumnName = "companyId",insertable = false,updatable = false,nullable = false)
     private Company company;
 
 }
