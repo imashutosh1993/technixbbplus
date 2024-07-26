@@ -1,22 +1,39 @@
 package com.technix.bbplus.controller;
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.Company;
 import com.technix.bbplus.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
 @RequestMapping("/company")
 public class CompanyController {
 
+
+
     @Autowired
     private CompanyService companyService;
 
+    public static String UploadDirectory = System.getProperty("user.dir")+"E:\\ashupic\\wallpaper";
+
     @PostMapping("/post")
-    public ResponseEntity<Company> createCompany(@RequestBody Company company) {
-        Company createdCompany = companyService.createCompany(company);
+    public ResponseEntity<Company> createCompany(@ModelAttribute Company company,
+                                                 @RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
+//        String originalFilename = file.getOriginalFilename();
+//        Path fileNameAndPath= Paths.get(UploadDirectory ,originalFilename);
+//        Files.write(fileNameAndPath,file.getBytes());
+//        company.setLogo(originalFilename);
+
+        Company createdCompany = companyService.createCompany(company,file);
         return ResponseEntity.ok(createdCompany);
     }
 
@@ -28,8 +45,8 @@ public class CompanyController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<List<Company>> getAllCompanies() {
-        List<Company> companies = companyService.getAllCompanies();
+    public ResponseEntity<?> getAllCompanies(@RequestParam int pageNo,@RequestParam int pageSize) {
+        PageResponse<Company> companies = companyService.getAllCompanies(pageNo,pageSize);
         return ResponseEntity.ok(companies);
     }
 

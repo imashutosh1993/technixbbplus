@@ -1,9 +1,13 @@
 package com.technix.bbplus.service.impl;
 
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.CompanyAdditional;
 import com.technix.bbplus.repository.CompanyAdditionalRepository;
 import com.technix.bbplus.service.CompanyAdditionalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -32,9 +36,18 @@ public class CompanyAdditionalImpl implements CompanyAdditionalService {
     }
 
     @Override
-    public List<CompanyAdditional> getAllcompanyadditionals() {
+    public PageResponse<CompanyAdditional> getAllcompanyadditionals(int page ,int size) {
         try {
-            return companyAdditionalRepository.findAll();
+            PageRequest pageRequest=PageRequest.of(page,size, Sort.by("id"));
+            Page<CompanyAdditional> companyAdditionals = companyAdditionalRepository.findAll(pageRequest);
+            return new PageResponse<>(
+                    companyAdditionals.getContent(),
+                    companyAdditionals.getNumber(),
+                    companyAdditionals.getSize(),
+                    companyAdditionals.getTotalElements(),
+                    companyAdditionals.getTotalPages()
+            );
+
         }catch (Exception e){
             throw new RuntimeException("Error getAll customeradditional: " +  e.getMessage());
         }

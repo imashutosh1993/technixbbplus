@@ -1,10 +1,11 @@
 package com.technix.bbplus.service;
 
-import com.technix.bbplus.entity.CompanySettings;
-import com.technix.bbplus.entity.Product;
-import org.springframework.data.domain.Page;
+import com.technix.bbplus.dto.PageResponse;
 
-import java.awt.print.Pageable;
+import com.technix.bbplus.entity.Product;
+
+
+
 import java.util.List;
 
 public interface ProductService {
@@ -13,7 +14,7 @@ public interface ProductService {
 
     Product getproductById(int id);
 
-    Page<Product> getAllproduct();
+    PageResponse getAllproduct(int page,int size);
 
     Product updateproduct(int id,Product product);
 

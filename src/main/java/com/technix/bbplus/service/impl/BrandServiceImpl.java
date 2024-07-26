@@ -1,9 +1,13 @@
 package com.technix.bbplus.service.impl;
 
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.Brand;
 import com.technix.bbplus.repository.BrandRepository;
 import com.technix.bbplus.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +22,21 @@ private BrandRepository brandRepository;
     }
 
     @Override
-    public List<Brand> getAllbrand() {
-        return brandRepository.findAll();
+    public PageResponse<Brand> getAllbrand(int page,int size) {
+        try {
+            PageRequest pageRequest = PageRequest.of(page, size, Sort.by("id"));
+            Page<Brand> page1 = brandRepository.findAll(pageRequest);
+
+            return new PageResponse<>(
+                    page1.getContent(),
+                    page1.getNumber(),
+                    page1.getSize(),
+                    page1.getTotalElements(),
+                    page1.getTotalPages()
+            );
+        }catch (Exception e){
+            throw new RuntimeException("Error getAll brand: " + e.getMessage());
+        }
     }
 
     @Override

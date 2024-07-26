@@ -1,5 +1,4 @@
 package com.technix.bbplus.service.impl;
-import com.technix.bbplus.entity.Customer;
 import com.technix.bbplus.entity.CustomerOrder;
 import com.technix.bbplus.repository.CustomerOrderRepository;
 import com.technix.bbplus.repository.CustomerRepository;

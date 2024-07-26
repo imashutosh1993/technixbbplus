@@ -1,5 +1,6 @@
 package com.technix.bbplus.controller;
 
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.BankDetails;
 import com.technix.bbplus.service.BankDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class BankDetailsController {
     return new ResponseEntity<>(bankDetailsService.getBankdetailsById(id),HttpStatus.OK);
     }
 @GetMapping("/get")
-    public  ResponseEntity<List<BankDetails>> getAllBankdetails(){
-    return new ResponseEntity<List<BankDetails>>(bankDetailsService.getAllBankdetails(),HttpStatus.OK);
+    public  ResponseEntity<?> getAllBankdetails(@RequestParam int pageNo,@RequestParam int pageSize){
+    return new ResponseEntity<PageResponse<BankDetails>>(bankDetailsService.getAllBankdetails(pageNo,pageSize),HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
     public  ResponseEntity<?> deleteBankdetails(@PathVariable int id){

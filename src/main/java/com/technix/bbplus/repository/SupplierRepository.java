@@ -1,6 +1,6 @@
 package com.technix.bbplus.repository;
 
-import com.technix.bbplus.entity.Brand;
+
 import com.technix.bbplus.entity.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;
 

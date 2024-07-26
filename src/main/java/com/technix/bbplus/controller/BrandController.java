@@ -1,5 +1,6 @@
 package com.technix.bbplus.controller;
 
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.Brand;
 import com.technix.bbplus.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.util.List;
 @RequestMapping("/brand")
 public class BrandController {
 
+
     @Autowired
     private BrandService brandService;
 
@@ -21,8 +23,8 @@ public class BrandController {
         return new ResponseEntity<>(brandService.createbrand(brand), HttpStatus.CREATED);
     }
     @GetMapping("/get")
-    public ResponseEntity<List<Brand>> getAllbrand (){
-        return new ResponseEntity<>(brandService.getAllbrand(),HttpStatus.OK);
+    public ResponseEntity<?> getAllbrand (@RequestParam int pageNo, @RequestParam int pageSize){
+        return new ResponseEntity<PageResponse<Brand>>(brandService.getAllbrand(pageNo,pageSize),HttpStatus.OK);
     }
     @GetMapping("/getby/{id}")
     public ResponseEntity<?> getBybrandid(@PathVariable int id){

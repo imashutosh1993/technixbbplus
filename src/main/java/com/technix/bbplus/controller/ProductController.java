@@ -26,8 +26,8 @@ public class ProductController {
         return new ResponseEntity<Product>(productService.getproductById(id),HttpStatus.OK);
     }
 @GetMapping("/get")
-    public ResponseEntity<?> getAllproduct(){
-        return new ResponseEntity<>(productService.getAllproduct(),HttpStatus.OK);
+    public ResponseEntity<?> getAllproduct(@RequestParam int pageNo,@RequestParam int pageSize){
+        return new ResponseEntity<>(productService.getAllproduct(pageNo,pageSize),HttpStatus.OK);
     }
 @PutMapping("/update/{id}")
     public ResponseEntity<?> updateproduct(@PathVariable int id,@RequestBody Product product){

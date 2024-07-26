@@ -1,6 +1,6 @@
 package com.technix.bbplus.service.impl;
 
-import com.technix.bbplus.entity.Brand;
+
 import com.technix.bbplus.entity.Department;
 import com.technix.bbplus.repository.DepartmentRepository;
 import com.technix.bbplus.service.DepartmentService;

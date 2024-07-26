@@ -1,6 +1,6 @@
 package com.technix.bbplus.repository;
 
-import com.technix.bbplus.entity.CompanySettings;
+
 import com.technix.bbplus.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

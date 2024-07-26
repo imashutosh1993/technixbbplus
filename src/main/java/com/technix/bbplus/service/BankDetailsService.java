@@ -1,5 +1,6 @@
 package com.technix.bbplus.service;
 
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.BankDetails;
 import com.technix.bbplus.entity.PartnersDirectors;
 
@@ -10,7 +11,7 @@ public interface BankDetailsService {
 
     BankDetails createBankdetail(BankDetails bankDetails);
 
-    List<BankDetails> getAllBankdetails();
+    PageResponse<BankDetails> getAllBankdetails(int page,int size);
 
     Optional<BankDetails> getBankdetailsById(int id);
 

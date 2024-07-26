@@ -1,25 +1,22 @@
 package com.technix.bbplus.service.impl;
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.User;
 import com.technix.bbplus.repository.UserRepository;
 import com.technix.bbplus.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService  {
 
 
-    private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
     @Autowired
     private UserRepository userRepository;
-
-
-
 
     @Override
     public User createUser(User user) {
@@ -33,8 +30,21 @@ public class UserServiceImpl implements UserService  {
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public PageResponse<User> getAllUsers(int page , int size) {
+        try {
+            PageRequest pageRequest= PageRequest.of(page,size , Sort.by("userId").ascending());
+            Page<User> paging= userRepository.findAll(pageRequest);
+            return new PageResponse<>(
+                    paging.getContent(),
+                    paging.getNumber(),
+                    paging.getSize(),
+                    paging.getTotalElements(),
+                    paging.getTotalPages()
+            );
+        }catch (Exception e){
+            throw new RuntimeException("Error getAlluser: " + e.getMessage());
+        }
+
     }
 
     @Override
@@ -68,7 +78,7 @@ public class UserServiceImpl implements UserService  {
             }
             return userRepository.save(user1);
         } catch (Exception e) {
-            log.error("user update error");
+
             throw new RuntimeException("update error");
         }
     }

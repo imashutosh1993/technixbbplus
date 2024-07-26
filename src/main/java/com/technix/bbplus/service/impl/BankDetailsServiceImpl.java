@@ -1,9 +1,13 @@
 package com.technix.bbplus.service.impl;
 
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.BankDetails;
 import com.technix.bbplus.repository.BankDetailsRepository;
 import com.technix.bbplus.service.BankDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,9 +30,17 @@ public class BankDetailsServiceImpl implements BankDetailsService {
     }
 
     @Override
-    public List<BankDetails> getAllBankdetails() {
+    public PageResponse<BankDetails> getAllBankdetails(int page,int size) {
         try {
-            return bankDetailsRepository.findAll();
+       PageRequest pageRequest= PageRequest.of(page,size, Sort.by("id"));
+            Page<BankDetails> page1= bankDetailsRepository.findAll(pageRequest);
+            return new PageResponse<>(
+                    page1.getContent(),
+                    page1.getNumber(),
+                    page1.getSize(),
+                    page1.getTotalElements(),
+                    page1.getTotalPages()
+            );
         } catch (Exception e) {
             throw new RuntimeException("Error getAll bankdetails: " + e.getMessage());
         }

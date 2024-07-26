@@ -37,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
             try {
                 return customerRepository.findAll();
             }catch (Exception e){
-                log.error("Resource not found");
+                log.error("Resource not found ");
                 throw new RuntimeException("customer not found");
             }
         }

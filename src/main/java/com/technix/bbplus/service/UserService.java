@@ -1,5 +1,6 @@
 package com.technix.bbplus.service;
 
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.User;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface UserService {
 
     User getUserById(int id);
 
-    List<User> getAllUsers();
+    PageResponse<User> getAllUsers(int page,int size);
 
     User updateUser(int id, User user);
 

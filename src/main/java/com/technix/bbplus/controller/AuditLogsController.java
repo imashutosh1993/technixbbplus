@@ -20,3 +20,4 @@ public ResponseEntity<?> getByuserid(int userId){
     return  new ResponseEntity<>(auditLogsService.getByuserid(userId), HttpStatus.OK);
 }
 }
+

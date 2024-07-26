@@ -2,7 +2,11 @@ package com.technix.bbplus.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+
+
 import java.sql.Timestamp;
+
 
 @Data
 @AllArgsConstructor
@@ -13,8 +17,6 @@ public class User  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
-
-
 
     private String fullName;
     private String emailId;
@@ -30,6 +32,7 @@ public class User  {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customerId",referencedColumnName = "customerId", insertable = false,nullable = false, updatable = false)
     private Customer customers;
+
 
 
 

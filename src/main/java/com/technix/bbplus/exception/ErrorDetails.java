@@ -12,10 +12,12 @@ public class ErrorDetails {
     }
 
     public int getStatusCode() {
+
         return statusCode;
     }
 
     public void setStatusCode(int statusCode) {
+
         this.statusCode = statusCode;
     }
 

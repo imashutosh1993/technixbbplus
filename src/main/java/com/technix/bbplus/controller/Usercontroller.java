@@ -1,4 +1,5 @@
 package com.technix.bbplus.controller;
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.User;
 import com.technix.bbplus.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,9 @@ public class Usercontroller {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<?> getAllUsers(@RequestParam int pageNo,@RequestParam int pageSize) {
         try {
-            List<User> users = userService.getAllUsers();
+            PageResponse<User> users = userService.getAllUsers(pageNo,pageSize);
             return ResponseEntity.ok(users);
         } catch (Exception e) {
             return ResponseEntity.status(500).body(null);

@@ -1,5 +1,6 @@
 package com.technix.bbplus.service.impl;
 
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.Product;
 import com.technix.bbplus.repository.ProductRepository;
 import com.technix.bbplus.service.ProductService;
@@ -9,7 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -34,10 +35,20 @@ public class ProductServiceImpl implements ProductService {
         }
     }
     @Override
-    public Page<Product> getAllproduct() {
+    public PageResponse getAllproduct(int page, int size ) {
         try {
-            PageRequest pageRequest=PageRequest.of(0,10);
-            return productRepository.findAll(pageRequest);
+            PageRequest pageRequest=PageRequest.of(page,size);
+
+             Page<Product> paging= productRepository.findAll(pageRequest);
+             return new PageResponse(
+                     paging.getContent(),
+                     paging.getNumber(),
+                     paging.getSize(),
+                     paging.getTotalElements(),
+                     paging.getTotalPages()
+
+             );
+
         }catch (Exception e){
             throw new RuntimeException("Error get product");
         }

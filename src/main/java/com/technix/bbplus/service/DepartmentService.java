@@ -1,6 +1,6 @@
 package com.technix.bbplus.service;
 
-import com.technix.bbplus.entity.Brand;
+
 import com.technix.bbplus.entity.Department;
 
 import java.util.List;

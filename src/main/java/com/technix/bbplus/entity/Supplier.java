@@ -28,4 +28,5 @@ public class Supplier {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "companyId",referencedColumnName = "companyId",insertable = false,nullable = false,updatable = false)
     private Company company;
+
 }

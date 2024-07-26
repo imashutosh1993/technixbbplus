@@ -1,5 +1,6 @@
 package com.technix.bbplus.service;
 
+import com.technix.bbplus.dto.PageResponse;
 import com.technix.bbplus.entity.Brand;
 import com.technix.bbplus.entity.PartnersDirectors;
 
@@ -9,7 +10,7 @@ public interface BrandService {
 
     Brand createbrand(Brand brand);
 
-    List<Brand> getAllbrand();
+    PageResponse<Brand> getAllbrand(int page,int size);
 
     Brand getBybrandid(int id);
 

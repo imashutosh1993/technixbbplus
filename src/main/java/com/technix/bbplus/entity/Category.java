@@ -12,8 +12,9 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Data
 @Entity
-
+@Table(name = "tblcategory")
 public class Category {
+
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -31,3 +32,5 @@ public class Category {
     private Company company;
 
 }
+
+

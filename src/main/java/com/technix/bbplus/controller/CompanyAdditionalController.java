@@ -2,6 +2,7 @@ package com.technix.bbplus.controller;
 
 import com.technix.bbplus.entity.CompanyAdditional;
 import com.technix.bbplus.service.CompanyAdditionalService;
+import org.hibernate.engine.jdbc.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,8 @@ public class CompanyAdditionalController {
         return new ResponseEntity<CompanyAdditional>(companyAdditionalService.getcompanyadditionalById(id),HttpStatus.OK);
     }
     @GetMapping("/get")
-    public ResponseEntity<?> getAllcompanyadditionals(){
-        return new ResponseEntity<>(companyAdditionalService.getAllcompanyadditionals(),HttpStatus.OK);
+    public ResponseEntity<?> getAllcompanyadditionals(@RequestParam int pageNo, @RequestParam int pageSize){
+        return new ResponseEntity<>(companyAdditionalService.getAllcompanyadditionals(pageNo,pageSize),HttpStatus.OK);
     }
 @PutMapping("/updateBy/{id}")
 public ResponseEntity<?> updatecompanyadditional(@PathVariable int id, @RequestBody CompanyAdditional companyAdditional){

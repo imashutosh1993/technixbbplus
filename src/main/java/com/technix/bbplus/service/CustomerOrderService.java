@@ -1,8 +1,8 @@
 package com.technix.bbplus.service;
 
-import com.technix.bbplus.entity.Company;
+
 import com.technix.bbplus.entity.CustomerOrder;
-import com.technix.bbplus.entity.User;
+
 
 import java.util.List;
 

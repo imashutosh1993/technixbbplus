@@ -1,6 +1,6 @@
 package com.technix.bbplus.service;
 import com.technix.bbplus.entity.Subscription;
-import com.technix.bbplus.entity.User;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +13,5 @@ public interface SubscriptionService {
      void deleteSubscription(int subsId);
 
      List<Subscription> getBycustomerId(int CustomerId );
-
 
 }
